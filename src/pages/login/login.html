@@ -1,0 +1,38 @@
+<!--
+  Generated template for the Login page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="peach" text-center>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
+    <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input name="email" type="email" placeholder="john@doe.com" [(ngModel)]="user.email" required></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input text-right name="password" type="password" placeholder="" [(ngModel)]="user.password" required></ion-input>
+    </ion-item>
+    <button ion-button type="submit" class="button-block" color="peach">
+    Login
+    </button>
+  </form>
+
+</ion-content>
+
+<ion-footer color="peach" text-center>
+  <ion-toolbar   (click) = "goRegister()" >
+    <ion-title>Register </ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,44 @@
+<!--
+  Generated template for the Register page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="peach" text-center>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form #registerForm="ngForm" (ngSubmit)="signupForm(registerForm)" novalidate>
+   <ion-item>
+     <ion-label>First Name</ion-label>
+     <ion-input text-right name="firstName" type="text" placeholder="John" [(ngModel)]="user.firstName" required></ion-input>
+   </ion-item>
+    <ion-item>
+     <ion-label>Last Name</ion-label>
+     <ion-input text-right name="lastName" type="text" placeholder="Doe" [(ngModel)]="user.lastName" required></ion-input>
+   </ion-item>
+       <ion-item>
+     <ion-label>Organization</ion-label>
+     <ion-input text-right name="organization" type="text" placeholder="(optional)" [(ngModel)]="user.organization"></ion-input>
+   </ion-item>
+   <ion-item>
+     <ion-label>Email</ion-label>
+     <ion-input text-right name="email" type="email" placeholder="john@doe.com" [(ngModel)]="user.email" required></ion-input>
+   </ion-item>
+  <ion-item>
+     <ion-label>Password</ion-label>
+     <ion-input text-right name="password" type="password" placeholder="" [(ngModel)]="user.password" required></ion-input>
+   </ion-item>
+   <button ion-button type="submit" class="button-block" color="peach">
+     Register
+   </button>
+ </form>
+
+
+</ion-content>
