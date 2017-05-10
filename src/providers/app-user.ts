@@ -16,18 +16,20 @@ export class AppUser {
     console.log('Hello AppUser Provider');
   }
   baseUrl: string = "https://sp-17-jenny-jbrownssf.c9users.io:8080/api"
-  path: string = "/AppUsers"
+  userPath: string = "/Users"
+  loginPath: string = "/login"
+  
   
   register(newUserData) {
    return this.http.post(
-    this.baseUrl + this.path,
+    this.baseUrl + this.userPath,
     newUserData
    );
   }
   
   login(userData) {
    return this.http.post(
-    this.baseUrl + this.path + "/login",
+    this.baseUrl + this.userPath + this.loginPath,
     userData
    );
   }
