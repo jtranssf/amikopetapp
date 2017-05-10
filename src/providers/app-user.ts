@@ -18,7 +18,7 @@ export class AppUser {
   baseUrl: string = "https://sp-17-jenny-jbrownssf.c9users.io:8080/api"
   userPath: string = "/Users"
   loginPath: string = "/login"
-  
+  logoutPath: string = "/logout"  
   
   register(newUserData) {
    return this.http.post(
@@ -33,5 +33,13 @@ export class AppUser {
     userData
    );
   }
+  
+  logout(token) {
+   return this.http.post(
+    this.baseUrl + this.userPath + this.logoutPath,
+    + '?access_token' +  token, {}
+   );
+  }
+  
 
 }

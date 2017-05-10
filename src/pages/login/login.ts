@@ -38,7 +38,7 @@ export class Login {
     if(form.invalid) {
       return alert("Please fill in all of the required fields.");
     }
-     this.navCtrl.push(Home);
+    
      this.appUser.login(this.user)
     .map(res => res.json())
     .subscribe(res => {

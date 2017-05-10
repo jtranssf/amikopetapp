@@ -33,7 +33,6 @@ export class Register {
     if(form.invalid) {
      return alert("Please fill in all of the required fields.");
     }
-    this.navCtrl.push(Start);
     
     this.appUser.register(this.user)
     .map(res => res.json())
