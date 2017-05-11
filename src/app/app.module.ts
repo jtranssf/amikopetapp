@@ -15,6 +15,7 @@ import { Play } from '../pages/play/play';
 
 //providers
 import { AppUser } from '../providers/app-user';
+import { PetStats } from '../providers/pet-stats';
 
 import { HttpModule } from '@angular/http';
 
@@ -42,7 +43,8 @@ let injections: any[] = [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AppUser
+    AppUser,
+    PetStats
   ]
 })
 export class AppModule {}

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Home } from '../home/home';
+import { PetStats } from '../../providers/pet-stats';
 
 /**
  * Generated class for the Start page.
@@ -21,7 +22,7 @@ export class Start {
   public blue: boolean = false;
   petColor: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public petStats: PetStats) {
   }
 
   ionViewDidLoad() {
@@ -42,6 +43,12 @@ export class Start {
     }
     if(this.pet.name!=null)
     console.log(this.pet.name);
+    this.pet.feeling = "Happy";
+    this.pet.energy = 100;
+    this.pet.happiness = 100;
+    
+    console.log(this.pet);
+    this.petStats.pushStats(this.pet);
     this.navCtrl.setRoot(Home, { pet: this.pet });
   }
 

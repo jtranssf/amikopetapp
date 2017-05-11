@@ -34,7 +34,7 @@ export class Feed {
             "energy": 27
       },
       {
-            "name": "Kiwi",
+            "name": "Apple",
             "id": 2,
             "happiness": 12,
             "energy": 30
@@ -52,6 +52,33 @@ export class Feed {
   goHome(){
     this.navCtrl.push(Home);
   }
-
+  
+  feed(fruit){
+    if(fruit=="strawberry"){
+      alert("You fed "+ this.pet.name + " a strawberry");
+      console.log(this.foodItems[0]);
+      this.pet.happiness += this.foodItems[0].happiness;
+      this.pet.energy +=  this.foodItems[0].energy;
+      this.navCtrl.push(Home, {pet: this.pet});
+      
+      
+    }else 
+     if(fruit=="peach"){
+      alert("You fed "+ this.pet.name + " a peach");
+      console.log(this.foodItems[1]);
+      this.pet.happiness += this.foodItems[1].happiness;
+      this.pet.energy +=  this.foodItems[1].energy;
+      this.navCtrl.push(Home, {pet: this.pet});
+      
+    }else 
+     if(fruit=="apple"){
+      alert("You fed "+ this.pet.name + " an apple");
+      console.log(this.foodItems[2]);
+      this.pet.happiness += this.foodItems[2].happiness;
+      this.pet.energy +=  this.foodItems[2].energy;
+      this.navCtrl.push(Home, {pet: this.pet});
+      
+    }
+  }
 
 }

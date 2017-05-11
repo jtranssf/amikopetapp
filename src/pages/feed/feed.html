@@ -14,5 +14,28 @@
 
 
 <ion-content padding>
+  
+  <ion-item text-center no-lines>
+  <br> <br> <br> <br> <br>Which food would you like to feed? <br> <br> 
+</ion-item>
+<ion-item no-lines>
+  
+
+<ion-grid text-center>
+  <ion-row>
+    <ion-col padding (click)="feed('peach')" > 
+      <img src="../../assets/images/peach.png" alt=""> 
+    </ion-col> 
+    <ion-col padding (click)="feed('strawberry')" > 
+      <img src="../../assets/images/strawberry.png" alt=""> 
+    </ion-col>
+        <ion-col padding (click)="feed('apple')" > 
+      <img src="../../assets/images/apple.png" alt=""> 
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+</ion-item>
 
 </ion-content>

@@ -14,5 +14,27 @@
 
 
 <ion-content padding>
+  
+    <ion-item text-center no-lines>
+  <br> <br> <br> <br> <br>Welcome.  Choose an action below <br> <br> 
+</ion-item>
+<ion-item no-lines>
+  
+
+<ion-grid text-center>
+  <ion-row>
+    <ion-col padding (click)="goFeed()"> 
+      Feed Pet
+    </ion-col> 
+    <ion-col padding (click)="goPlay()" > 
+      Play with Pet
+    </ion-col>
+    <ion-col padding (click)="logout()"> 
+      Log Out
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-item>
 
 </ion-content>

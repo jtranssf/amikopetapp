@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AppUser } from '../../providers/app-user';
 import { Home } from '../home/home';
 import { Register } from '../register/register';
+import { PetStats } from '../../providers/pet-stats';
 
 /**
  * Generated class for the Login page.
@@ -19,11 +20,13 @@ import { Register } from '../register/register';
 export class Login {
   
   user: any = {};
+  pet: any = null;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public appUser: AppUser
+    public appUser: AppUser,
+    public petStats: PetStats
     ) { }
 
   ionViewDidLoad() {
@@ -39,12 +42,16 @@ export class Login {
       return alert("Please fill in all of the required fields.");
     }
     
-     this.appUser.login(this.user)
+    this.appUser.login(this.user)
     .map(res => res.json())
     .subscribe(res => {
       window.localStorage.setItem('token', res.id);
       window.localStorage.setItem('userId', res.userId);
-      this.navCtrl.push(Home);
+      
+      this.pet = this.petStats.getStats(window.localStorage.getItem("token"));
+      console.log(this.pet);
+      
+      this.navCtrl.push(Home, {pet: this.pet});
     }, error => {
         switch(error.status) {
         case 404:
