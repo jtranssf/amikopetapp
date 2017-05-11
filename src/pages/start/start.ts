@@ -20,9 +20,12 @@ export class Start {
   pet: any = {};
   public orange: boolean = false;
   public blue: boolean = false;
-  petColor: any;
+  token: any  ;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public petStats: PetStats) {
+    this.token = window.localStorage.getItem("token");
+    
   }
 
   ionViewDidLoad() {
@@ -46,10 +49,35 @@ export class Start {
     this.pet.feeling = "Happy";
     this.pet.energy = 100;
     this.pet.happiness = 100;
+    this.pet.id=window.localStorage.getItem("userId");
+    console.log("before stat", this.pet, this.token);
     
-    console.log(this.pet);
-    this.petStats.pushStats(this.pet);
-    this.navCtrl.setRoot(Home, { pet: this.pet });
+    this.petStats.pushStats(this.token,this.pet)
+    .map(res => res.json())
+    .subscribe(res => {
+      console.log("res",res);
+      this.navCtrl.setRoot(Home, { pet: this.pet });
+    }, error => {
+        switch(error.status) {
+        case 404:
+          alert("Error 404: Page Not Found");
+          break;
+        case 422:
+          alert("Error 422");
+          break;
+        case 500:
+          alert("Error 500: Server is currently offline, please try again later");
+          break;
+        case null:
+          alert("User is offline");
+          break;
+        default:
+          alert("Error, please try again later");
+          break;
+      }
+      
+    });  
+
   }
 
 }

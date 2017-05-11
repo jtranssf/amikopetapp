@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { AppUser } from '../../providers/app-user';
+//pages
 import { Home } from '../home/home';
 import { Register } from '../register/register';
+import { Start } from '../start/start';
+
+//providers
 import { PetStats } from '../../providers/pet-stats';
+import { AppUser } from '../../providers/app-user';
 
 /**
  * Generated class for the Login page.
@@ -20,7 +24,7 @@ import { PetStats } from '../../providers/pet-stats';
 export class Login {
   
   user: any = {};
-  pet: any = null;
+  pet: any = {};
 
   constructor(
     public navCtrl: NavController, 
@@ -47,11 +51,20 @@ export class Login {
     .subscribe(res => {
       window.localStorage.setItem('token', res.id);
       window.localStorage.setItem('userId', res.userId);
-      
-      this.pet = this.petStats.getStats(window.localStorage.getItem("token"));
-      console.log(this.pet);
-      
-      this.navCtrl.push(Home, {pet: this.pet});
+
+      this.petStats.getStats(res.id, res.userId)
+      .map(res => res.json())
+      .subscribe(res => {
+        this.pet = res;
+        console.log("Our pet is " + this.pet);
+        this.navCtrl.push(Home, {pet: this.pet});
+      //catch errors if we can not call pet from provider  
+      }, error => {
+        alert("Could not retrieve pet, please create a new one");
+        this.navCtrl.push(Start);
+      });
+    
+    //catch errors if user cannot log in   
     }, error => {
         switch(error.status) {
         case 404:
@@ -64,7 +77,7 @@ export class Login {
           alert("User is offline");
           break;
         default:
-          alert("Error, please try again later");
+          alert("Error. Did you enter the correct email and password?");
           break;
       }
       

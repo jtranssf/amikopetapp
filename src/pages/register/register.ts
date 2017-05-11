@@ -38,6 +38,7 @@ export class Register {
     .subscribe(res => {
       window.localStorage.setItem('token', res.token);
       window.localStorage.setItem('userId', res.id);
+      console.log("res",res, res.token, res.id);
       this.navCtrl.push(Start);
     }, error => {
         switch(error.status) {

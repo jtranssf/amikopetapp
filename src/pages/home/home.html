@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar  color="peach" text-center>
     <ion-title>Home</ion-title>
   </ion-navbar>
 
@@ -15,19 +15,34 @@
 
 <ion-content padding>
   
-    <ion-item text-center no-lines>
-  <br> <br> <br> <br> <br>Welcome.  Choose an action below <br> <br> 
+<ion-item no-lines text-right>
+<br>Mood: {{pet.feeling}}<br>Happiness Level: {{pet.happiness}}<br>Energy Level: {{pet.energy}}
+</ion-item>
+<ion-item text-center no-lines>
+  <br> <br> <br> <br> <br>Welcome! Choose an action below <br> <br> 
 </ion-item>
 <ion-item no-lines>
+  
+  
+<ion-grid text-center>
+  <ion-row padding >
+    <ion-col padding *ngIf="orange" [ngClass]="{'padding': true}" > 
+      <img src="../../assets/images/orangeEgg.png" alt=""> 
+    </ion-col>
+    <ion-col padding *ngIf="blue" [ngClass]="{'padding': true}" > 
+      <img src="../../assets/images/blueEgg.png" alt=""> 
+    </ion-col>
+  </ion-row>
+</ion-grid>
   
 
 <ion-grid text-center>
   <ion-row>
     <ion-col padding (click)="goFeed()"> 
-      Feed Pet
+      Feed {{pet.name}}
     </ion-col> 
     <ion-col padding (click)="goPlay()" > 
-      Play with Pet
+      Play with {{pet.name}}
     </ion-col>
     <ion-col padding (click)="logout()"> 
       Log Out

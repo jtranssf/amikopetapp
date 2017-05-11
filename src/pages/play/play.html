@@ -23,10 +23,10 @@
 
 <ion-grid text-center>
   <ion-row>
-    <ion-col padding (click)="petClick('orange'); orange=true; blue=false" [ngClass]="{'borderclass': orange }"> 
+    <ion-col padding (click)="play(0)"> 
       <img src="../../assets/images/orangeEgg.png" alt=""> 
     </ion-col> 
-    <ion-col padding (click)="petClick('blue'); blue=true; orange=false" [ngClass]="{'borderclass': blue }"> 
+    <ion-col padding (click)="play(1)"> 
       <img src="../../assets/images/blueEgg.png" alt=""> 
     </ion-col>
   </ion-row>

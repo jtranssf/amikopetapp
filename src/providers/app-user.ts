@@ -16,10 +16,11 @@ export class AppUser {
     console.log('Hello AppUser Provider');
   }
   baseUrl: string = "https://sp-17-jenny-jbrownssf.c9users.io:8080/api"
-  userPath: string = "/Users"
+  userPath: string = "/AppUsers"
   loginPath: string = "/login"
   logoutPath: string = "/logout"  
   
+  //http POST request to register a new user
   register(newUserData) {
    return this.http.post(
     this.baseUrl + this.userPath,
@@ -27,6 +28,7 @@ export class AppUser {
    );
   }
   
+  //http POST request to login a new user
   login(userData) {
    return this.http.post(
     this.baseUrl + this.userPath + this.loginPath,
@@ -34,10 +36,12 @@ export class AppUser {
    );
   }
   
+  //http POST request to logout the user 
   logout(token) {
    return this.http.post(
     this.baseUrl + this.userPath + this.logoutPath,
-    + '?access_token' +  token, {}
+    + '?access_token=' +  token, {}  //we need to pass in an empty object
+    //because the POST method is expecting two parameters 
    );
   }
   

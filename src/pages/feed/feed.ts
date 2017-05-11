@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Home } from '../home/home';
 
+import { PetStats } from '../../providers/pet-stats';
+
 /**
  * Generated class for the Feed page.
  *
@@ -19,7 +21,10 @@ export class Feed {
   foodItems: any = [];
   pet: any = {};
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public petStats: PetStats) {
     this.foodItems = [
       {
             "name": "Strawberry",
@@ -60,8 +65,6 @@ export class Feed {
       this.pet.happiness += this.foodItems[0].happiness;
       this.pet.energy +=  this.foodItems[0].energy;
       this.navCtrl.push(Home, {pet: this.pet});
-      
-      
     }else 
      if(fruit=="peach"){
       alert("You fed "+ this.pet.name + " a peach");
@@ -76,9 +79,18 @@ export class Feed {
       console.log(this.foodItems[2]);
       this.pet.happiness += this.foodItems[2].happiness;
       this.pet.energy +=  this.foodItems[2].energy;
-      this.navCtrl.push(Home, {pet: this.pet});
-      
     }
+    
+    this.petStats.updateStats( window.localStorage.getItem('token'), window.localStorage.getItem('userId'), this.pet.happiness, this.pet.energy )
+      .map(res => res.json())
+      .subscribe(res => {
+        this.pet = res;
+        console.log("Updated pet is " + this.pet);
+        this.navCtrl.push(Home, {pet: this.pet});
+      //catch errors if we can not call pet from provider  
+      }, error => {
+        alert("Could not update stats, please try again");
+      });
   }
 
 }
